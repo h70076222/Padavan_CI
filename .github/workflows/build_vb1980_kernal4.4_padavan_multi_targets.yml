@@ -6,7 +6,7 @@ on:
       targets:
         description: 'targets to compile'
         required: true
-        default: "['SIM-AX1800T','HAR-20S2U1','CR660x','JCG-Q20']"
+        default: "['WR1200JS']"
       plugins:
         description: 'json format string of include configs'
         required: true
@@ -28,7 +28,7 @@ on:
         required: true
         default: '20220520'
 env:
-  REPOSITORY_URL: https://github.com/vb1980/padavan-4.4.git
+  REPOSITORY_URL: https://github.com/h70076222/Padavan-4.4kvr.git
   WORK_PATH: /opt/padavan-4.4
   TIME_ZONE: Asia/Shanghai
   FIRMWARE_DATEPREFIX: $(date +"%Y%m%d")
@@ -194,29 +194,29 @@ jobs:
         #
         echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> .config #可以不集成
         echo "CONFIG_FIRMWARE_INCLUDE_TUNSAFE=n" >> .config #tunsafe
-        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=${{env.dnsforwarder}}" >> .config #dnsforwarder
+        echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n{{env.dnsforwarder}}" >> .config #dnsforwarder
         #
         echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=${{env.adbyby}}" >> .config #adbyby plus+
         #
         echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=${{env.adguardhome}}" >> .config #adguardhome
-        echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=${{env.smartdns}}" >> .config #smartdns
+        echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=n{{env.smartdns}}" >> .config #smartdns
         #
-        echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=${{env.aliddns}}" >> .config #阿里DDNS
-        echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=${{env.zerotier}}" >> .config #zerotier ~1.3M
-        echo "CONFIG_FIRMWARE_INCLUDE_DDNSTO=${{env.ddnsto}}" >> .config #ddnsto
-        echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD=${{env.wireguard}}" >> .config #wireguard
+        echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y{{env.aliddns}}" >> .config #阿里DDNS
+        echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y{{env.zerotier}}" >> .config #zerotier ~1.3M
+        echo "CONFIG_FIRMWARE_INCLUDE_DDNSTO=n{{env.ddnsto}}" >> .config #ddnsto
+        echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD=n{{env.wireguard}}" >> .config #wireguard
         echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config #frp server
-        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=${{env.frpc}}" >> .config #frp client
+        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n{{env.frpc}}" >> .config #frp client
         #
         echo "CONFIG_FIRMWARE_INCLUDE_ALDRIVER=${{env.aldrive}}" >> .config #阿里云盘
         echo "CONFIG_FIRMWARE_INCLUDE_SQM=${{env.sqm}}" >> .config #QOS流控
         #
         #校园网相关开始
-        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=${{env.mentohust}}" >> .config #MENTOHUST
-        echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=${{env.scutclient}}" >> .config #SCUTCLIENT
-        echo "CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=${{env.njitclient}}" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_MINIEAP=${{env.minieap}}" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=${{env.dogcom}}" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n{{env.mentohust}}" >> .config #MENTOHUST
+        echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n{{env.scutclient}}" >> .config #SCUTCLIENT
+        echo "CONFIG_FIRMWARE_INCLUDE_NJIT_CLIENT=n{{env.njitclient}}" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_MINIEAP=n{{env.minieap}}" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_DOGCOM=n{{env.dogcom}}" >> .config
         #校园网相关结束
         #########################################################################################
         #自定义添加其它功能请参考源码configs/templates/目录下的config文件。按照上面的格式添加即可
